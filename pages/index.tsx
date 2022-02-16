@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function Home({ data }) {
   console.log(data)
@@ -12,13 +13,15 @@ export default function Home({ data }) {
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">Brew App</h1>
 
-        {data.map((item) =>
-          Object.entries(item).map(([key, value]) => (
-            <div key={key}>
-              {key}: {!value ? 'null' : value}
-            </div>
-          ))
-        )}
+        {data.map((item) => (
+          <div key={item.id}>
+            <p>{item.name}</p>
+            <p>{item.brewery_type}</p>
+            <Link href={item?.website_url || ''}>
+              <a>{item.website_url}</a>
+            </Link>
+          </div>
+        ))}
       </main>
     </div>
   )
