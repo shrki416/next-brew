@@ -12,16 +12,40 @@ export default function Home({ data }) {
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">Brew App</h1>
-
-        {data.map((item) => (
-          <div key={item.id}>
-            <p>{item.name}</p>
-            <p>{item.brewery_type}</p>
-            <Link href={item?.website_url || ''}>
-              <a>{item.website_url}</a>
-            </Link>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 gap-5 p-10 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+          {data.map((item) => (
+            <div key={item.id}>
+              <div className="overflow-hidden rounded shadow-lg">
+                <img
+                  className="w-full"
+                  src="/cheers.jpeg"
+                  alt="beer in sunset"
+                />
+                <div className="px-6 py-4">
+                  <div className="mb-2 text-xl font-bold">{item.name}</div>
+                  <p className="text-base text-gray-700">
+                    {item.street}, {item.city}, {item.state} {item.postal_code}
+                  </p>
+                  <p className="text-base text-gray-700">{item.country}</p>
+                  <p className="text-base text-gray-700">
+                    longitude: {item.longitude}, latitude: {item.latitude}
+                  </p>
+                </div>
+                <div className="px-6 pt-4 pb-2">
+                  <span className="mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
+                    {item.brewery_type}
+                  </span>
+                  <span className="mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
+                    {item.phone}
+                  </span>
+                  <span className="mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
+                    {item.website_url}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </main>
     </div>
   )
