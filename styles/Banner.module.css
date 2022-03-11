@@ -1,6 +1,8 @@
 /** By default, this is a mobile breakpoint **/
 .container {
   margin-bottom: 1rem;
+  /* position: relative; */
+  /* z-index: 2; */
 }
 
 .title {
@@ -52,6 +54,12 @@
   background-color: var(--text-purple-dark);
 }
 
+.heroImage {
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+}
+
 /**
   Breakpoints:
   ------------
@@ -99,6 +107,10 @@
     padding-left: 2.5rem /* 40px */;
     padding-right: 2.5rem /* 40px */;
   }
+
+  .heroImage {
+    right: 20%;
+  }
 }
 
 /** lg breakpoint **/
@@ -123,6 +135,10 @@
 
   .buttonWrapper {
     justify-content: flex-start;
+  }
+
+  .heroImage {
+    right: 20%;
   }
 }
 
