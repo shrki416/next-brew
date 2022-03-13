@@ -3,49 +3,21 @@ import Card from '../components/Card'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { createApi } from 'unsplash-js'
+import { fetchBreweries } from '../lib/brew'
 import styles from '../styles/Home.module.css'
 
-const unsplashApi = createApi({
-  accessKey: process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY,
-})
-
-const getListOfBreweryImages = async () => {
-  const images = await unsplashApi.search.getPhotos({
-    query: 'brewery',
-    per_page: 40,
-  })
-  const unsplashResults = images.response?.results || []
-  return unsplashResults.map((result) => result.urls['small'])
-}
-
 export async function getStaticProps() {
-  try {
-    const images = await getListOfBreweryImages()
-    const response = await fetch(
-      `https://api.openbrewerydb.org/breweries?by_state=new_york`
-    )
-    const breweries = await response.json()
+  const breweries = await fetchBreweries()
 
-    const data = breweries.map((brew, index) => {
-      return {
-        ...brew,
-        image: images[index],
-      }
-    })
-
-    console.log(`🍌`, data)
-
-    return {
-      props: {
-        breweries: data,
-      },
-    }
-  } catch (error) {}
+  return {
+    props: {
+      breweries,
+    },
+  }
 }
 
 export default function Home(props) {
-  // console.log(props.breweries)
+  console.log(props.breweries)
 
   const handleOnBannerBtnClick = () => {
     console.log('Hi, banner button')
