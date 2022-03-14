@@ -39,13 +39,6 @@ export async function getStaticPaths() {
 }
 
 export default function Brewery(props) {
-  <Head>
-    <link
-      href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
-      rel="stylesheet"
-    />
-  </Head>
-
   console.log(`🍏`, props.brewery)
   const map = useRef(null)
   const mapContainer = useRef(null)
@@ -75,7 +68,7 @@ export default function Brewery(props) {
         <div className={styles.nameWrapper}>
           <h1 className={styles.name}>{props.brewery.name}</h1>
         </div>
-        <div>
+        {/* <div>
           <div>
             <div className="sidebar">
               Longitude: {props.brewery.longitude} | Latitude:{' '}
@@ -83,8 +76,8 @@ export default function Brewery(props) {
             </div>
             <div ref={mapContainer} className="map-container" />
           </div>
-        </div>
-        {/* <Image
+        </div> */}
+        <Image
           src={
             props.brewery.image ||
             'https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80'
@@ -93,7 +86,7 @@ export default function Brewery(props) {
           height={360}
           className={styles.storeImg}
           alt={props.brewery.name}
-        ></Image> */}
+        ></Image>
       </div>
     </div>
   )
