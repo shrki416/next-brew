@@ -8,9 +8,11 @@ export default function Banner(props) {
         <span className={styles.title2}>Master</span>
       </h1>
       <p className={styles.subTitle}>Discover your local breweries!</p>
-      <button className={styles.button} onClick={props.handleClick}>
-        {props.buttonText}
-      </button>
+      <div className={styles.buttonWrapper}>
+        <button className={styles.button} onClick={props.handleClick}>
+          {props.buttonText}
+        </button>
+      </div>
     </div>
   )
 }
