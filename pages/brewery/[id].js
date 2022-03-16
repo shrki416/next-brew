@@ -1,12 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import cls from 'classnames'
 import { fetchBreweries } from '/lib/brew'
-import mapboxgl from '!mapbox-gl'
 import styles from '/styles/Brew.module.css'
 import { useRouter } from 'next/router'
-
-mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API_ACCESS_TOKEN
 
 export async function getStaticProps(staticProps) {
   const params = staticProps.params
@@ -36,29 +34,34 @@ export async function getStaticPaths() {
   }
 }
 
+const handleUpvoteButton = () => {
+  console.log('upvote')
+}
+
 export default function Brewery(props) {
   console.log(`🍏`, props.brewery)
+  console.log(props.brewery.city)
 
   const router = useRouter()
   const { id } = router.query
 
   return (
-    <>
+    <div className={styles.layout}>
       <Head>
         <title>{props.brewery.name}</title>
         <meta name="description" content={props.brewery.description} />
       </Head>
 
       <div className={styles.container}>
-        <div className={styles.col1}>
-          <div className={styles.backToHomeLink}>
-            <Link href="/">
-              <a>← Back to home</a>
-            </Link>
-          </div>
+        <div className={styles.backToHomeLink}>
+          <Link href="/">
+            <a>← Back to home</a>
+          </Link>
           <div className={styles.nameWrapper}>
             <h1 className={styles.name}>{props.brewery.name}</h1>
           </div>
+        </div>
+        <div className={styles.col1}>
           <Image
             src={
               props.brewery.image ||
@@ -70,7 +73,67 @@ export default function Brewery(props) {
             alt={props.brewery.name}
           />
         </div>
+        <div className={cls('glass', styles.col2)}>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/static/icons/nearMe.svg"
+              width="24"
+              height="24"
+              alt="near me icon"
+            />
+            <p className={styles.text}>{props.brewery.city}</p>
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/static/icons/places.svg"
+              width="24"
+              height="24"
+              alt="places icon"
+            />
+            <p className={styles.text}>{props.brewery.street}</p>
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/static/icons/star.svg"
+              width="24"
+              height="24"
+              alt="star icon"
+            />
+            <p className={styles.text}>{props.brewery.phone}</p>
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/static/icons/star.svg"
+              width="24"
+              height="24"
+              alt="star icon"
+            />
+            <p className={styles.text}>{props.brewery.website_url}</p>
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/static/icons/star.svg"
+              width="24"
+              height="24"
+              alt="star icon"
+            />
+            <p className={styles.text}>{props.brewery.brewery_type}</p>
+          </div>
+          <div className={styles.iconWrapper}>
+            <Image
+              src="/static/icons/star.svg"
+              width="24"
+              height="24"
+              alt="star icon"
+            />
+            <p className={styles.text}>0</p>
+          </div>
+
+          <button className={styles.upvoteButton} onClick={handleUpvoteButton}>
+            Up vote!
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
