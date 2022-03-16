@@ -11,7 +11,8 @@
 }
 
 .col1 {
-  place-self: center;
+  align-self: center;
+  grid-area: 2/-3;
 }
 
 .backToHomeLink {
@@ -29,6 +30,7 @@
 
 .name {
   color: var(--text-white-100);
+  color: #f1c40f;
   font-size: 2.25rem /* 36px */;
   line-height: 2.5rem /* 40px */;
   text-overflow: ellipsis;
@@ -54,14 +56,12 @@
 }
 
 .col2 {
-  border-radius: 1rem /* 16px */;
-  padding: 1rem /* 16px */;
+  border-radius: 1rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  margin-left: 0.5rem /* 8px */;
   align-self: center;
-  margin-top: 4rem /* 64px */;
-  color: rgba(55, 59, 100, 1);
+  grid-area: 2 / -2;
 }
 
 .iconWrapper {
@@ -98,23 +98,6 @@
 
 .upvoteButton:hover {
   background-color: var(--text-purple);
-}
-
-.map-container {
-  height: 400px;
-}
-
-.sidebar {
-  background-color: rgba(35, 55, 75, 0.9);
-  color: #fff;
-  padding: 6px 12px;
-  font-family: monospace;
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 12px;
-  border-radius: 4px;
 }
 
 @media (min-width: 1024px) {
