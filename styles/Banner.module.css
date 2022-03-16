@@ -36,9 +36,11 @@
 }
 
 .button {
-  background-color: var(--text-purple-dark);
+  /* background-color: var(--text-purple-dark); */
+  background-color: #f1c40f;
   cursor: pointer;
-  color: white;
+  /* color: white; */
+  color: #535c68;
   outline: 0;
   border: 0px;
 
@@ -51,7 +53,9 @@
 }
 
 .button:hover {
-  background-color: var(--text-purple-dark);
+  /* background-color: var(--text-purple-dark); */
+  background-color: #535c68;
+  color: #f1c40f;
 }
 
 .heroImage {
