@@ -33,6 +33,7 @@
   font-weight: 800;
   overflow: hidden;
   width: 16rem /* 256px */;
+  color: #535c68;
 }
 
 .cardImageWrapper {
