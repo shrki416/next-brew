@@ -1,6 +1,6 @@
 import styles from '../styles/Banner.module.css'
 
-export default function Banner(props) {
+export default function Banner({ handleClick, buttonText }) {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>
@@ -9,8 +9,8 @@ export default function Banner(props) {
       </h1>
       <p className={styles.subTitle}>Discover your local breweries!</p>
       <div className={styles.buttonWrapper}>
-        <button className={styles.button} onClick={props.handleClick}>
-          {props.buttonText}
+        <button className={styles.button} onClick={handleClick}>
+          {buttonText}
         </button>
       </div>
     </div>
