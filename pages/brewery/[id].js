@@ -1,6 +1,9 @@
+import { useContext, useEffect, useState } from 'react'
+
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { StoreContext } from '../_app'
 import cls from 'classnames'
 import { fetchBreweries } from '/lib/brew'
 import styles from '/styles/Brew.module.css'
@@ -38,18 +41,36 @@ const handleUpvoteButton = () => {
   console.log('upvote')
 }
 
-export default function Brewery(props) {
-  console.log(`🍏`, props.brewery)
-  console.log(props.brewery.city)
+function isEmpty(obj) {
+  return obj && Object.keys(obj).length === 0
+}
 
+export default function Brewery(initialProps) {
   const router = useRouter()
   const { id } = router.query
+
+  const [brewery, setBreweries] = useState(initialProps.brewery || {})
+
+  const {
+    state: { breweries },
+  } = useContext(StoreContext)
+
+  useEffect(() => {
+    if (isEmpty(initialProps.brewery)) {
+      if (breweries.length > 0) {
+        const findBrewById = breweries.find((brew) => brew.id === id)
+        setBreweries(findBrewById)
+      }
+    }
+  }, [id])
+
+  const { name, city, street, phone, website_url, brewery_type, image } =
+    brewery
 
   return (
     <div className={styles.layout}>
       <Head>
-        <title>{props.brewery.name}</title>
-        <meta name="description" content={props.brewery.description} />
+        <title>{name}</title>
       </Head>
 
       <div className={styles.container}>
@@ -58,19 +79,19 @@ export default function Brewery(props) {
             <a>← Back to home</a>
           </Link>
           <div className={styles.nameWrapper}>
-            <h1 className={styles.name}>{props.brewery.name}</h1>
+            <h1 className={styles.name}>{name}</h1>
           </div>
         </div>
         <div className={styles.col1}>
           <Image
             src={
-              props.brewery.image ||
+              image ||
               'https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80'
             }
             width={600}
             height={360}
             className={styles.storeImg}
-            alt={props.brewery.name}
+            alt={name}
           />
         </div>
         <div className={cls('glass', styles.col2)}>
@@ -81,7 +102,7 @@ export default function Brewery(props) {
               height="24"
               alt="near me icon"
             />
-            <p className={styles.text}>{props.brewery.city}</p>
+            <p className={styles.text}>{city}</p>
           </div>
           <div className={styles.iconWrapper}>
             <Image
@@ -90,7 +111,7 @@ export default function Brewery(props) {
               height="24"
               alt="places icon"
             />
-            <p className={styles.text}>{props.brewery.street}</p>
+            <p className={styles.text}>{street}</p>
           </div>
           <div className={styles.iconWrapper}>
             <Image
@@ -99,7 +120,7 @@ export default function Brewery(props) {
               height="24"
               alt="star icon"
             />
-            <p className={styles.text}>{props.brewery.phone}</p>
+            <p className={styles.text}>{phone}</p>
           </div>
           <div className={styles.iconWrapper}>
             <Image
@@ -108,7 +129,7 @@ export default function Brewery(props) {
               height="24"
               alt="star icon"
             />
-            <p className={styles.text}>{props.brewery.website_url}</p>
+            <p className={styles.text}>{website_url}</p>
           </div>
           <div className={styles.iconWrapper}>
             <Image
@@ -117,7 +138,7 @@ export default function Brewery(props) {
               height="24"
               alt="star icon"
             />
-            <p className={styles.text}>{props.brewery.brewery_type}</p>
+            <p className={styles.text}>{brewery_type}</p>
           </div>
           <div className={styles.iconWrapper}>
             <Image
