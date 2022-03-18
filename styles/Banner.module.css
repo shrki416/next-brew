@@ -36,11 +36,10 @@
 }
 
 .button {
-  /* background-color: var(--text-purple-dark); */
   background-color: #f1c40f;
   cursor: pointer;
   /* color: white; */
-  color: #535c68;
+  color: #0052d4;
   outline: 0;
   border: 0px;
 
@@ -53,8 +52,7 @@
 }
 
 .button:hover {
-  /* background-color: var(--text-purple-dark); */
-  background-color: #535c68;
+  background-color: #0052d4;
   color: #f1c40f;
 }
 
