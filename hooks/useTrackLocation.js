@@ -1,4 +1,4 @@
-import { ACTION_TYPES, StoreContext } from '../pages/_app.js'
+import { ACTION_TYPES, StoreContext } from '../store/brew-store'
 import { useContext, useState } from 'react'
 
 const useTrackLocation = () => {
