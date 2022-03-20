@@ -1,5 +1,3 @@
-// pages/_document.js
-
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
