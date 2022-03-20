@@ -21,7 +21,6 @@ export async function getStaticProps() {
 }
 
 export default function Home(props) {
-  // const [brewery, setBreweries] = useState('')
   const [error, setError] = useState(null)
   const { handleTrackLocation, locationErrorMsg, loading } = useTrackLocation()
 
@@ -32,7 +31,6 @@ export default function Home(props) {
     if (latLong) {
       try {
         const fetchedBreweries = await fetchBreweries(latLong, 18)
-        // setBreweries(fetchedBreweries)
         dispatch({
           type: ACTION_TYPES.SET_BREWERIES,
           payload: {
